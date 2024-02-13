@@ -3,7 +3,7 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "source": "src/index.tsx",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "types": "./dist/index.d.ts",
   "license": "MIT",
@@ -20,7 +20,7 @@
   },
   "peerDependencies": {
     "@chakra-ui/react": "^2",
-    "react-markdown": "^9"
+    "markdown-to-jsx": "^7.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.9",

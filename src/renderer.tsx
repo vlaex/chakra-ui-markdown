@@ -1,5 +1,5 @@
 import deepmerge from "deepmerge";
-import { Components } from "react-markdown";
+import { type MarkdownToJSX } from "markdown-to-jsx";
 import {
   Code,
   Divider,
@@ -11,8 +11,9 @@ import {
   UnorderedList,
 } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
-import { Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/table";
 import { chakra } from "@chakra-ui/system";
+
+type MarkdownOverrides = MarkdownToJSX.Overrides;
 
 type GetCoreProps = {
   children?: React.ReactNode;
@@ -25,15 +26,8 @@ function getCoreProps(props: GetCoreProps): any {
     : {};
 }
 
-interface Defaults extends Components {
-  /**
-   * @deprecated Use `h1, h2, h3, h4, h5, h6` instead.
-   */
-  heading?: Components["h1"];
-}
-
-export const defaults: Defaults = {
-  p: (props) => {
+export const defaults: MarkdownOverrides = {
+  p:  (props) => {
     const { children } = props;
     return <Text mb={2}>{children}</Text>;
   },
@@ -95,15 +89,9 @@ export const defaults: Defaults = {
     const { children } = props;
     return <chakra.pre {...getCoreProps(props)}>{children}</chakra.pre>;
   },
-  table: Table,
-  thead: Thead,
-  tbody: Tbody,
-  tr: (props) => <Tr>{props.children}</Tr>,
-  td: (props) => <Td>{props.children}</Td>,
-  th: (props) => <Th>{props.children}</Th>,
 };
 
-function ChakraUIRenderer(theme?: Defaults, merge = true): Components {
+function ChakraUIRenderer(theme?: MarkdownOverrides, merge = true): Partial<MarkdownOverrides> {
   const elements = {
     p: defaults.p,
     em: defaults.em,
@@ -124,12 +112,6 @@ function ChakraUIRenderer(theme?: Defaults, merge = true): Components {
     h5: defaults.h5,
     h6: defaults.h6,
     pre: defaults.pre,
-    table: defaults.table,
-    thead: defaults.thead,
-    tbody: defaults.tbody,
-    tr: defaults.tr,
-    td: defaults.td,
-    th: defaults.th,
   };
 
   if (theme && merge) {
