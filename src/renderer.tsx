@@ -12,7 +12,7 @@ import {
 import { Image } from "@chakra-ui/image";
 import { chakra } from "@chakra-ui/system";
 
-type MarkdownOverrides = MarkdownToJSX.Overrides;
+type MarkdownOverrides = Required<Pick<MarkdownToJSX.Overrides, keyof MarkdownToJSX.Overrides>>;
 
 type GetCoreProps = {
   children?: React.ReactNode;
