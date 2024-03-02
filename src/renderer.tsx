@@ -90,7 +90,7 @@ export const defaults: MarkdownOverrides = {
   },
 };
 
-function ChakraUIRenderer(theme?: MarkdownOverrides, merge = true): Partial<MarkdownOverrides> {
+function ChakraUIRenderer(theme?: MarkdownOverrides, merge = true): MarkdownToJSX.Overrides {
   const elements = {
     p: defaults.p,
     em: defaults.em,
