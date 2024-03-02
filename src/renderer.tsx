@@ -1,4 +1,3 @@
-import deepmerge from "deepmerge";
 import { type MarkdownToJSX } from "markdown-to-jsx";
 import {
   Code,
@@ -27,7 +26,7 @@ function getCoreProps(props: GetCoreProps): any {
 }
 
 export const defaults: MarkdownOverrides = {
-  p:  (props) => {
+  p: (props) => {
     const { children } = props;
     return <Text mb={2}>{children}</Text>;
   },
@@ -115,7 +114,10 @@ function ChakraUIRenderer(theme?: MarkdownOverrides, merge = true): Partial<Mark
   };
 
   if (theme && merge) {
-    return deepmerge(elements, theme);
+    return {
+      ...elements,
+      ...theme
+    };
   }
 
   return elements;

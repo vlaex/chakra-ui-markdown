@@ -15,9 +15,6 @@
     "type": "git",
     "url": "https://github.com/vlaex/chakra-ui-markdown"
   },
-  "dependencies": {
-    "deepmerge": "^4.3.1"
-  },
   "peerDependencies": {
     "@chakra-ui/react": "^2",
     "markdown-to-jsx": "^7.4.1"
